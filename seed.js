@@ -11,7 +11,7 @@ dotenv.config();
 async function seed() {
     try{
     await connect();
-// Vorhandene Daten löschen (optional)
+// Delete existing data (optional)
 
     await Employee.deleteMany();
     await Address.deleteMany();
@@ -19,12 +19,12 @@ async function seed() {
     await Role.deleteMany();
     console.log("Existing data cleared");
 
-//Rolen hinzufügen
+//Add roles
 const rolesNames= ["Developer", "Manager", "Marketing", "HR", "Management"];
 const roles= await Role.insertMany(rolesNames.map(Name =>({Name})));
 console.log("Roles seeded",  roles.map(r => r.Name).join(", "));
 
-// Büros hinzufügen
+// Add offices
 const offices= await Office.insertMany([
     {StreetNameAndNumber: "123 Main St", AreaCode: "12345", City: "Frankfurt" },
     {StreetNameAndNumber: "456 Elm St", AreaCode: "67890", City: "Mainz" },
@@ -32,7 +32,7 @@ const offices= await Office.insertMany([
 ]);
 console.log("Offices seeded:", offices.map(o => o.StreetNameAndNumber).join(", "));
 
-// Mitarbeiter und Adressen hinzufügen
+// Add employees and addresses
 const employees= [];
 for(let i=0; i<15; i++){
     const address = await Address.create({

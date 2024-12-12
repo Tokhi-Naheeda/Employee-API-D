@@ -15,7 +15,7 @@ app.use("/employee", employeeRouter);
 app.use("/role", roleRouter);
 app.use("/office", officeRouter);
 
-// Server starten
+// start server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });
